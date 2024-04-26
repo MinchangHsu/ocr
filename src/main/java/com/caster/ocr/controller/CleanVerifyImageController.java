@@ -29,7 +29,7 @@ public class CleanVerifyImageController {
 
 	@PostMapping("")
 	public ResponseEntity cleanImage(MultipartFile file) throws InterruptedException, IOException {
-		CleanServiceAbs abs = (CleanServiceAbs)context.getBean("chunghWa");
+		CleanServiceAbs abs = (CleanServiceAbs)context.getBean("ticketPlus");
 		InputStream inputStream = new ByteArrayInputStream(file.getBytes());
 		// 中華郵政郵遞區號3+2
 		String code = abs.executeOCRMainProcess(inputStream, 4);

@@ -13,6 +13,7 @@ import java.util.Map;
  */
 public class SquareShape extends AbsShapeProcess {
 
+    boolean usedOriginInfoMap = false;
     public SquareShape() {
     }
 
@@ -22,6 +23,15 @@ public class SquareShape extends AbsShapeProcess {
         this.x = x;
         this.y = y;
         this.step = step;
+    }
+
+    public SquareShape(Map<String, int[]> pointsRGBInfoMap, Map<String, int[]> originRGBInfoMap, int x, int y, int step, boolean usedOriginInfoMap) {
+        this.pointsRGBInfoMap = pointsRGBInfoMap;
+        this.originRGBInfoMap = originRGBInfoMap;
+        this.x = x;
+        this.y = y;
+        this.step = step;
+        this.usedOriginInfoMap = usedOriginInfoMap;
     }
 
     @Override
@@ -35,7 +45,7 @@ public class SquareShape extends AbsShapeProcess {
         for (int i = -step; i < (step + 1); i++) {
             for (int j = -step; j < (step + 1); j++) {
 
-                int RGB[] = setRGBToMap(pointsRGBInfoMap, (j + x), (i + y));
+                int RGB[] = setRGBToMap(usedOriginInfoMap ? originRGBInfoMap : pointsRGBInfoMap, (j + x), (i + y));
 
                 // 都是以图片的角度 并非 数学角度 判断象限
                 if (i == 0 && j == 0) {  // 中心點
